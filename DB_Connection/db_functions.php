@@ -1,5 +1,6 @@
 <?php
 require_once "db_connection.php";
+require_once "../Utility/send_mail.php";
 
 class DB_Insert
 {
@@ -30,7 +31,11 @@ class DB_Insert
             echo ("Record inserted");
         }
         catch (Exception $e)
-        {echo $e->getMessage ();}
+        {
+            $Error = $e->getMessage ();
+            Send_Mail::OnError($Error);
+            echo $Error;
+        }
     
     $conn = null;
     }

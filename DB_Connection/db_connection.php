@@ -18,7 +18,11 @@ function connect_db()
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
         }
         catch (PDOException $e)
-        {echo $e->getMessage();}
+        {
+            $Error = $e->getMessage ();
+            Send_Mail::OnError($Error);
+            echo $Error;
+        }
         
     return $conn;
 }
