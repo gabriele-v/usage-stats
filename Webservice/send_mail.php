@@ -7,18 +7,16 @@ class Send_Mail
 {
     public function Send_Mail_Base ($To, $CC, $BCC, $Subject, $Message)
     {
-        $Headers = "";
-        
-        // To send HTML mail, the Content-type header must be set
-        //$Headers .= "MIME-Version: 1.0" . "\r\n";
-        //$Headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
-        
-        // Additional headers
-        $Headers .= "From: " .Settings_Mail::$From. "\r\n";
+        $Headers = "From: " .Settings_Mail::$From. "\n";
         if ($CC != "")
-            $Headers .= "Cc: ${CC}" . "\r\n";
+            $Headers .= "Cc: {$CC}\n";
         if ($BCC != "")
-            $Headers .= "Bcc: ${BCC}" . "\r\n";
+            $Headers .= "Bcc: {$BCC}\n";
+        $Headers .= "X-Mailer: Money Manager EX - Usage Stats\n";
+        
+        //Send mail as HTML
+        $Headers .= "MIME-Version: 1.0\n";
+        $Headers .= "Content-Type: text/html; charset=utf-8\n";
         
         //Send mail
         mail($To, $Subject, $Message, $Headers);
