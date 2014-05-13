@@ -1,4 +1,5 @@
 <?php
+require_once "../Webservice/configuration.php";
 $From_Address = "noreply@example.com";
 $ToAlert = "example@example.com";
 
@@ -6,7 +7,6 @@ class Send_Mail
 {
     public function Send_Mail_Base ($To, $CC, $BCC, $Subject, $Message)
     {
-        global $From_Address;
         $Headers = "";
         
         // To send HTML mail, the Content-type header must be set
@@ -14,7 +14,7 @@ class Send_Mail
         //$Headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
         
         // Additional headers
-        $Headers .= "From: ${From_Address}" . "\r\n";
+        $Headers .= "From: " .Settings_Mail::$From. "\r\n";
         if ($CC != "")
             $Headers .= "Cc: ${CC}" . "\r\n";
         if ($BCC != "")
@@ -27,7 +27,7 @@ class Send_Mail
     public function OnError ($ErrorMessage)
     {
         global $ToAlert;
-        Send_Mail::Send_Mail_Base ($ToAlert, "", "", "Usage stats webservice error", $ErrorMessage);
+        Send_Mail::Send_Mail_Base (Settings_Mail::$ToAlert, "", "", "Usage stats webservice error", $ErrorMessage);
     }
 }
 ?>

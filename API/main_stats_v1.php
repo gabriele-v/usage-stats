@@ -1,6 +1,6 @@
 <?php
-require_once "../DB_Connection/db_functions.php";
-require_once "../Utility/send_mail.php";
+require_once "../Webservice/db_functions.php";
+require_once "../Webservice/send_mail.php";
 
 function getIpAddress()
 {

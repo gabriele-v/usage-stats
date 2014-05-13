@@ -1,13 +1,34 @@
 <?php
-require_once "db_connection.php";
-require_once "../Utility/send_mail.php";
+require_once "../Webservice/configuration.php";
+require_once "../Webservice/send_mail.php";
+
+class DB_Connect
+{
+    public function connect()
+    {
+        try
+        {
+            $conn = new PDO("mysql:host=" .Settings_Database::$Host. ";dbname=" .Settings_Database::$DbName,
+                    Settings_Database::$Username, Settings_Database::$Password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
+        }
+        catch (PDOException $e)
+        {
+            $Error = $e->getMessage ();
+            Send_Mail::OnError($Error);
+            echo $Error;
+        }
+            
+        return $conn;
+    }
+}
 
 class DB_Insert
 {
     public function insert_main_stats ($User_ID, $Version, $Platform, $OperatingSystem,
                                         $Language, $Country, $Resolution, $Start_Time, $End_Time)
     {
-    $conn = connect_db();
+    $conn = DB_Connect::connect();
     $statement = $conn->prepare ("INSERT INTO Main_Stats
                                 (User_ID, Version, Platform, OperatingSystem,
                                 Language, Country, Resolution, Start_Time, End_Time)
