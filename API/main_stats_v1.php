@@ -63,16 +63,16 @@ if (
             echo ("Required parameter empty");
             $Message = "Required parameter empty:"."<br>";
             foreach ($_GET as $Key => $Value)
-                {
-                    $Message .= $Key." = '${Value}'";
-                    $Message .= "<br>";
-                }
+            {
+                $Message .= $Key." = '${Value}'";
+                $Message .= "<br>";
+            }
             $Message .= "<br>"."<br>"."Server data:"."<br>";
             foreach ($_SERVER as $Key => $Value)
-                {
-                    $Message .= $Key." = '${Value}'";
-                    $Message .= "<br>";
-                }
+            {
+                $Message .= $Key." = '${Value}'";
+                $Message .= "<br>";
+            }
                 
             Send_Mail::OnError($Message);
         }
