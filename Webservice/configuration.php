@@ -15,11 +15,16 @@ class Settings_Database
 
 class Settings_Mail
 {
-    public static $From = "noreply@example.com";
+    public static $FromMail = "noreply@example.com";
+    public static $FromName = "Example";
     public static $ToAlert = "example@example.com";
 }
 
 class Settings_Report
 {
-    public static $Base_URL = "http:\\example.com";
+    public static $BaseURL = "http://example.com/Reports/run.php";
+    public static $ProjectName = "Project";
+    public static $ProjectPassword = "Password";
+    public static $VariableToday = "!TODAY!";
+    public static $VariableAnd = "!AND!";
 }

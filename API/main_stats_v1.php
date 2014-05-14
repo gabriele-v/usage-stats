@@ -1,6 +1,7 @@
 <?php
 require_once "../Webservice/db_functions.php";
 require_once "../Webservice/send_mail.php";
+require_once "../Webservice/utility.php";
 
 function getIpAddress()
 {
@@ -13,18 +14,6 @@ function getIpAddress()
         }
     else
         return $_SERVER['REMOTE_ADDR'];
-}
-
-function getLocationInfoByIp()
-{
-    $ip = getIpAddress();
-    $ip_data = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=".$ip));    
-    if($ip_data && $ip_data->geoplugin_countryName != null){
-        //$result["Country"] = $ip_data->geoplugin_countryName;
-        //$result["City"] = $ip_data->geoplugin_city;
-        $result = $ip_data->geoplugin_countryName;
-    }
-    return $result;
 }
 
 if (
@@ -50,7 +39,7 @@ if (
             if ($_GET["Country"] != "")
                 $Country        = $_GET["Country"];
             else
-                $Country        = getLocationInfoByIp();
+                $Country        = Localize::getLocationInfoByIp(getIpAddress());
             $Resolution         = $_GET["Resolution"];
             $Start_Time         = date ($_GET["Start_Time"]);
             $End_Time           = date ($_GET["End_Time"]);
