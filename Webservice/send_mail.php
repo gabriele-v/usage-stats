@@ -41,7 +41,7 @@ class Send_Mail
         if (file_exists($FilePath))
             $mail->addAttachment ($FilePath, "${ReportName}.pdf");
         
-        $Body = "<h2>Money Manager EX - Usage stats:</h2><b>Report ${ReportName}</b><br><br>";
+        $Body = "<h3>${ReportName}:</h3>";
         $Body .= "Open it in Reportico <a href='${URL}'>HERE</a>";
         $mail->Body = $Body;
         

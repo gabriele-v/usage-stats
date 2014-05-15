@@ -49,6 +49,8 @@ if (isset($_GET["MailTo"]) && isset($_GET["ReportName"]) && isset($_GET["Filters
             if ($Filters <> "")
                 $URL .= "&".$Filters;
             
+            echo "<a href='${URL}'>${URL}</a><br><br>";
+            
             $Time = str_replace(".","",microtime(true));
             $FilePath = "../Temp/${ReportName}_${Time}.pdf";
             
