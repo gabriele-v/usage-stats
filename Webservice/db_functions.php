@@ -9,7 +9,8 @@ class DB_Connect
         try
         {
             $conn = new PDO("mysql:host=" .Settings_Database::$Host. ";dbname=" .Settings_Database::$DbName,
-                    Settings_Database::$Username, Settings_Database::$Password);
+                    Settings_Database::$Username, Settings_Database::$Password,
+                    array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);   
         }
         catch (PDOException $e)
