@@ -32,10 +32,10 @@ class DB_Insert
     $conn = DB_Connect::connect();
     $statement = $conn->prepare ("INSERT INTO Main_Stats
                                 (User_ID, Version, Platform, OperatingSystem,
-                                Language, Country, Resolution, Start_Time, End_Time)
+                                Language, Country, Resolution, Start_Time, End_Time, Created_at)
                                 VALUES
                                 (:User_ID, :Version, :Platform, :OperatingSystem,
-                                :Language, :Country, :Resolution, :Start_Time, :End_Time);"
+                                :Language, :Country, :Resolution, :Start_Time, :End_Time, UTC_TIMESTAMP());"
                                 );
     $statement->bindParam (":User_ID", $User_ID);
     $statement->bindParam (":Version", $Version);
