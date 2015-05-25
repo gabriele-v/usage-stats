@@ -30,7 +30,7 @@ class DB_Insert
                                         $Language, $Country, $Resolution, $Start_Time, $End_Time)
     {
     $conn = DB_Connect::connect();
-    $statement = $conn->prepare ("INSERT INTO Main_Stats
+    $statement = $conn->prepare ("INSERT INTO Main_Stats_Live
                                 (User_ID, Version, Platform, OperatingSystem,
                                 Language, Country, Resolution, Start_Time, End_Time, Created_at)
                                 VALUES
